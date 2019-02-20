@@ -13,20 +13,35 @@
 
   <style type="text/css">
 
+body {
+  margin: 0;
+}
 
 .container {
     position: relative;
 }
 
+.topright {
+  position: absolute;
+  top: 0.3%;
+  left: 43.4%;
+  width: 100%;
+  text-align: center;
+  font-size: 11;
+  font-family: "Trebuchet MS", Helvetica, monospace;
+  opacity: 0.8;
+  color: white;
+}
+
 .center {
     position: absolute;
     left: 0;
-    top: 10%;
+    top: 15%;
     width: 100%;
     text-align: center;
-    font-size: 4vw;
+    font-size: 5vw; //4vw
     font-family: "Trebuchet MS", Helvetica, monospace;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .bottomcenter {
@@ -125,6 +140,7 @@ jQuery(function ($) {
 
 
 document.getElementById("para1").innerHTML = formatAMPM();
+document.getElementById("clock").innerHTML = formatClock();
 
 function formatAMPM() {
 var d = new Date(),
@@ -136,6 +152,16 @@ var d = new Date(),
 return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
 }
 
+function formatClock() {
+var d = new Date(),
+    minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+    hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
+    ampm = d.getHours() >= 12 ? 'pm' : 'am',
+    months = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'],
+    days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  //return '07:49';
+  return hours+':'+minutes;
+}
 
 
 
@@ -157,7 +183,7 @@ return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
 
   <img onclick="launchIntoFullscreen(document.documentElement)" src="a_data/905daGt.png" alt="Ticket" width="1000" height="300">
 
-
+  <div onclick="launchIntoFullscreen(document.documentElement)" class="topright">  <div><span id="clock">00:00</span></div> </div>
   <div onclick="launchIntoFullscreen(document.documentElement)" class="center"><div id="para1">17 April 2018</div></div>
   <div onclick="launchIntoFullscreen(document.documentElement)" class="bottomcenter">  <div><span id="time">74:53</span></div> </div>
 
